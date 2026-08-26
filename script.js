@@ -14,6 +14,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Genesis Image Slider Logic
+    const slides = document.querySelectorAll('#genesis-slider .slide');
+    const dots = document.querySelectorAll('#slider-dots .dot');
+    const prevBtn = document.getElementById('slide-prev');
+    const nextBtn = document.getElementById('slide-next');
+    let currentSlide = 0;
+    let slideInterval;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            dots[i].classList.remove('active');
+        });
+
+        currentSlide = (index + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    function startAutoSlide() {
+        slideInterval = setInterval(nextSlide, 4500);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(slideInterval);
+    }
+
+    if (prevBtn && nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+            stopAutoSlide();
+            startAutoSlide();
+        });
+    });
+
+    startAutoSlide();
+
     // Parallax Effect for Quote Background
     const quoteBg = document.querySelector('.quote-bg-image');
     if (quoteBg) {
@@ -66,10 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Click on inline editorial images
+    // Click on inline interactive images
     const interactiveImgs = document.querySelectorAll('.interactive-img');
     interactiveImgs.forEach(img => {
-        img.addEventListener('click', () => {
+        img.addEventListener('click', (e) => {
+            e.stopPropagation();
             lightboxImg.src = img.src;
             const caption = img.getAttribute('data-caption') || img.alt;
             lightboxCaption.innerHTML = `<strong>${caption}</strong>`;
@@ -78,19 +138,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Close lightbox
-    lightboxClose.addEventListener('click', () => {
-        lightbox.style.display = 'none';
-    });
-
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', () => {
             lightbox.style.display = 'none';
-        }
-    });
+        });
+    }
+
+    if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+    }
 
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+        if (e.key === 'Escape' && lightbox && lightbox.style.display === 'flex') {
             lightbox.style.display = 'none';
         }
     });
