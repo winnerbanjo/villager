@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function showSlide(index) {
         slides.forEach((slide, i) => {
             slide.classList.remove('active');
-            dots[i].classList.remove('active');
+            if (dots[i]) dots[i].classList.remove('active');
         });
 
         currentSlide = (index + slides.length) % slides.length;
         slides[currentSlide].classList.add('active');
-        dots[currentSlide].classList.add('active');
+        if (dots[currentSlide]) dots[currentSlide].classList.add('active');
     }
 
     function nextSlide() {
@@ -120,7 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const desc = card.getAttribute('data-desc');
 
             lightboxImg.src = imgSrc;
-            lightboxCaption.innerHTML = `<strong>${title}</strong><br><span style="font-size:0.95rem; opacity:0.8;">${desc}</span>`;
+            if (title || desc) {
+                lightboxCaption.innerHTML = `<strong>${title || ''}</strong><br><span style="font-size:0.95rem; opacity:0.8;">${desc || ''}</span>`;
+            } else {
+                lightboxCaption.innerHTML = '';
+            }
             lightbox.style.display = 'flex';
         });
     });
@@ -131,8 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
         img.addEventListener('click', (e) => {
             e.stopPropagation();
             lightboxImg.src = img.src;
-            const caption = img.getAttribute('data-caption') || img.alt;
-            lightboxCaption.innerHTML = `<strong>${caption}</strong>`;
+            const caption = img.getAttribute('data-caption');
+            lightboxCaption.innerHTML = caption ? `<strong>${caption}</strong>` : '';
             lightbox.style.display = 'flex';
         });
     });
