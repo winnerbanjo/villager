@@ -758,7 +758,7 @@ blockquote cite {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 .footer-logo-img {
@@ -786,6 +786,32 @@ blockquote cite {
     font-size: 0.85rem;
     margin-top: auto;
     margin-bottom: 4px;
+}
+
+/* Motto Styling */
+.footer-motto {
+    margin: 1rem 0 1.5rem 0;
+    border-top: 1px dashed rgba(209, 180, 106, 0.2);
+    border-bottom: 1px dashed rgba(209, 180, 106, 0.2);
+    padding: 1.2rem 0;
+    display: inline-block;
+}
+
+.motto-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent-color);
+    margin-bottom: 0.3rem;
+}
+
+.motto-subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+    margin: 0;
 }
 
 .panafricanist-story {
