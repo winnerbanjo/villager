@@ -401,7 +401,7 @@ p {
 .slider-track {
     position: relative;
     width: 100%;
-    min-height: 520px;
+    min-height: 540px;
 }
 
 .slide {
@@ -653,52 +653,52 @@ blockquote cite {
     font-weight: 700;
 }
 
-/* Dual Feature Showcase Grid */
-.dual-feature-grid {
+/* Triple Feature Showcase Grid (3 Columns) */
+.triple-feature-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
     margin-top: 4rem;
 }
 
-.dual-feature-card {
+.triple-feature-card {
     position: relative;
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
-.dual-feature-card img {
+.triple-feature-card img {
     width: 100%;
-    height: 480px;
+    height: 460px;
     object-fit: cover;
     display: block;
     transition: transform 0.7s var(--transition-smooth);
 }
 
-.dual-feature-card:hover img {
-    transform: scale(1.05);
+.triple-feature-card:hover img {
+    transform: scale(1.06);
 }
 
-.dual-card-info {
+.triple-card-info {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 2rem;
-    background: linear-gradient(to top, rgba(92,13,22,0.95), transparent);
+    padding: 1.8rem;
+    background: linear-gradient(to top, rgba(92,13,22,0.96), rgba(92,13,22,0.4) 70%, transparent);
     color: var(--white);
 }
 
-.dual-card-info h3 {
+.triple-card-info h3 {
     color: var(--white);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 0.3rem;
 }
 
-.dual-card-info p {
+.triple-card-info p {
     color: rgba(255,255,255,0.85);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin: 0;
 }
 
@@ -904,16 +904,12 @@ blockquote cite {
         gap: 3rem;
     }
 
-    .lookbook-grid {
+    .lookbook-grid, .triple-feature-grid {
         grid-template-columns: 1fr 1fr;
     }
 
     .lookbook-card.item-large {
         grid-column: span 2;
-    }
-
-    .dual-feature-grid {
-        grid-template-columns: 1fr;
     }
 }
 
@@ -922,7 +918,7 @@ blockquote cite {
         display: none;
     }
 
-    .lookbook-grid {
+    .lookbook-grid, .triple-feature-grid {
         grid-template-columns: 1fr;
     }
 
